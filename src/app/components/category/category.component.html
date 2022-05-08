@@ -1,17 +1,3 @@
-<!--<div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
-</div>
-
-<ul *ngIf="dataLoaded==true" class="list-group">
-    <li (click)="setAllCurrentCategory()"
-    [class]="getAllCategoryClass()"
-    routerLink="/houses">Tüm Kategoriler</li>
-    <li (click)="setCurrentCategory(category)"
-    routerLink="/houses/category/{{category.id}}"
-    [class]="getCurrentCategoryClass(category)"
-    *ngFor="let category of categories">{{category.categoryName}}</li>
-</ul>-->
-
 <div
   *ngIf="dataLoaded == false"
   class="spinner-border text-secondary"
@@ -19,7 +5,7 @@
 >
   <span class="visually-hidden">Loading...</span>
 </div>
-<label *ngIf="dataLoaded == true">
+<label *ngIf="dataLoaded == true" style="margin-top: 15px">
   <h5>Kategoriler</h5>
 </label>
 <input type="text" [(ngModel)]="categoryFilterText" class="form-control" id="categoryFilterText" placeholder="Kategori">
