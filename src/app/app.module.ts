@@ -1,16 +1,48 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NaviComponent } from './components/navi/navi.component';
+import { CategoryComponent } from './components/category/category.component';
+import { CityComponent } from './components/city/city.component';
+import { UserComponent } from './components/user/user.component';
+
+import { ToastrModule } from 'ngx-toastr';
+import { CategoryFilterPipe } from './pipes/category-filter.pipe';
+import { CityFilterPipe } from './pipes/city-filter.pipe';
+import { HouseDetailPageComponent } from './components/house-detail-page/house-detail-page.component';
+import { HouseDetailComponent } from './components/house-detail/house-detail.component';
+import { RentalComponent } from './components/rental/rental.component';
+import { HouseFilterPipe } from './pipes/house-filter.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NaviComponent,
+    CategoryComponent,
+    CityComponent,
+    UserComponent,
+    CategoryFilterPipe,
+    CityFilterPipe,
+    HouseDetailPageComponent,
+    HouseDetailComponent,
+    RentalComponent,
+    HouseFilterPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      positionClass:"toast-bottom-right"
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

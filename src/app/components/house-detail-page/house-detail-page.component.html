@@ -1,0 +1,77 @@
+<div
+  id="carouselExampleDark"
+  class="carousel carousel-dark slide"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-indicators">
+    <button
+      *ngFor="let image of houseImages; let i = index"
+      type="button"
+      data-bs-target="#carouselExampleDark"
+      attr.data-bs-slide-to="{{ i }}"
+      [class]="getButtonClass(image)"
+      aria-current="true"
+      aria-label="Slide 1"
+    ></button>
+  </div>
+  <div class="carousel-inner">
+    <div
+      *ngFor="let houseImage of houseImages; index as i; first as firstImage"
+      [ngClass]="{ active: firstImage}"
+      class="carousel-item active"
+      data-bs-interval="10000"
+    >
+      <img
+        src="{{imgBaseUrl}}{{houseImage}}"
+        class="d-block w-100"
+        height="400px"
+        alt="..."
+      />
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleDark"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Geri</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleDark"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">İleri</span>
+  </button>
+</div>
+
+<div class="table-responsive-md mt-3">
+    <table class="table table-striped table-hover table-bordered">
+      <thead *ngFor="let house of houseDetails">
+        <tr>
+          <th>Kategori</th>
+          <td>{{ house.categoryName }}</td>
+        </tr>
+        <tr>
+          <th>Şehir</th>
+          <td>{{ house.cityName }}</td>
+        </tr>
+        <tr>
+          <th>Kat</th>
+          <td>{{ house.floorLocation }}</td>
+        </tr>
+        <tr>
+          <th>Günlük ücret</th>
+          <td>{{ house.dailyPrice }} ₺</td>
+        </tr>
+        <tr>
+          <th>Açıklama</th>
+          <td>{{ house.houseName }}</td>
+        </tr>    
+      </thead>
+    </table>
+  </div>

@@ -1,0 +1,231 @@
+<div
+  *ngIf="dataLoaded"
+  class="modal fade"
+  id="rentalModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="rentalModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="rentalModalLabel">Ev Kiralama</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body bg-light">
+        <div class="row carImageAndTitle mb-3">
+          <div name="image" class="col-md-6">
+            <img
+              *ngIf="selectedHouseForRental"
+              [src]="getSelectedHouseForRentalImageSrc()"
+              class="img rounded float-start"
+              alt="..."
+              width="230px"
+              height="150px"
+            />
+          </div>
+          <div
+            *ngIf="selectedHouseForRental"
+            class="carInfo text-center col-md-6"
+          >            
+            <h4 class="mt-4">{{ selectedHouseForRental.houseName }}</h4>
+            <label class="text-muted"
+              ><strong><u>Ödenecek Tutar</u></strong></label
+            >
+            <h5 *ngIf="!rentalPeriod">{{0 | currency: "":""}}₺</h5>
+            <div *ngIf="rentalPeriod && validateRentalDates == true ">
+              <h5>{{ selectedHouseForRental.dailyPrice * rentalPeriod | currency: "":"" }}₺</h5>
+              <p class="text-muted">( {{rentalPeriod}} gün )</p>
+            </div>
+          </div>
+        </div>
+        <form class="form-group row mb-2">
+          <label class="col-md-4 col-form-label text-end"
+            ><strong>Kiralama Tarihi : </strong></label
+          >
+          <div class="col-md-8">
+            <input
+              [(ngModel)]="rentalDate"
+              (ngModelChange)="validateReservationDates(rentalDate, returnDate)"
+              (ngModelChange)="checkIfAnyReservationsBetweenSelectedDates(selectedHouseForRental.houseId, rentalDate, returnDate)"
+              (ngModelChange)="calculateRentalPeriod()"
+              class="form-control"
+              name="rentalDate"
+              type="date"
+              [min]="getDateNow()"
+            />
+          </div>
+        </form>
+        <form *ngIf="rentalDate" class="form-group row">
+          <label class="col-md-4 col-form-label text-end"
+            ><strong>Teslim Tarihi : </strong></label
+          >
+          <div class="col-md-8">
+            <input
+              [(ngModel)]="returnDate"
+              (ngModelChange)="validateReservationDates(rentalDate, returnDate)"
+              (ngModelChange)="checkIfAnyReservationsBetweenSelectedDates(selectedHouseForRental.houseId, rentalDate, returnDate)"
+              (ngModelChange)="calculateRentalPeriod()"
+              class="form-control"
+              name="returnDate"
+              type="date"
+              [min]="addDayToDate(convertStringToDate(rentalDate), 1)"
+            />
+          </div>
+        </form>
+      </div>
+
+      <div *ngIf="rentalConfirmation && validateRentalDates===true">
+
+        <div
+          *ngIf="rentalConfirmation.data===false && (convertStringToDate(rentalDate) > convertStringToDate(getDateNow()))">
+          <div *ngIf="rentalPeriod" class="alert alert-danger text-center" role="alert">
+            Ev için seçili tarihler arasında başka bir rezervasyon mevcut
+          </div>
+        </div>
+
+        <div
+          *ngIf="rentalConfirmation.data===false && (convertStringToDate(rentalDate) <= convertStringToDate(getDateNow()))">
+          <div *ngIf="rentalPeriod" class="alert alert-danger text-center" role="alert">
+            Ev daha önce kiralanmış
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div *ngIf="rentalConfirmation && validateRentalDates===true">
+          <button *ngIf="rentalConfirmation.data===true" (click)="goToPayment()" type="button" class="btn btn-warning">Kirala</button>
+        </div>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          İptal
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row input-group bg-warning text-dark my-3 py-3 ms-0">
+  <div class="row col-md-8">
+    <div class="col-md-4">
+      <select
+        [(ngModel)]="selectedCategoryId"
+        class="form-select form-select-sm"
+        aria-label="Kategori"
+        required
+      >
+        <option selected value="0">Tüm Markalar</option>
+        <option *ngFor="let category of categories" value="{{ category.id }}">
+          {{ category.categoryName }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <select
+        [(ngModel)]="selectedCityId"
+        class="form-select form-select-sm"
+        aria-label="Şehir"
+      >
+        <option selected value="0">Tüm Şehirler</option>
+        <option *ngFor="let city of cities" value="{{ city.id }}">
+          {{city.cityName}}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-sm btn-dark text-warning me-2" (click)="filter()">
+        Filtrele
+      </button>
+      <button
+        class="btn btn-sm btn-dark text-warning"
+        (click)="clearFilter()"
+        role="button"
+      >
+        Temizle
+      </button>
+    </div>
+  </div>
+  <div class="row col-md-4">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+      <input
+        type="text"
+        [(ngModel)]="houseFilterText"
+        class="form-control form-control-sm"
+        id="houseFilterText"
+        placeholder="Ev arama"
+      />
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-secondary"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div
+    *ngFor="let houseDetail of houseDetails | houseFilter: houseFilterText"
+    class="col"
+  >
+    <div class="card">
+      <img
+        [src]="setCurrentHouseImageSrc()"
+        [class]="getCurrentHouseClass(houseDetail)"
+        [alt]="setCurrentHouseImageAlt()"
+        height="165px"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ houseDetail.houseName }}</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <b style="float: left; width: 50%; text-align: left">Kategori</b>
+            {{ houseDetail.categoryName }}
+          </li>
+          <li class="list-group-item">
+            <b style="float: left; width: 50%; text-align: left">Şehir</b>
+            {{ houseDetail.cityName }}
+          </li>
+          <li class="list-group-item">
+            <b style="float: left; width: 50%; text-align: left">Kat</b>
+            {{ houseDetail.floorLocation }}
+          </li>
+          <li class="list-group-item">
+            <b style="float: left; width: 50%; text-align: left">Adres</b>
+            {{ houseDetail.address }}
+          </li>
+          <h5 align="center">{{ houseDetail.dailyPrice }} ₺</h5>
+        </ul>
+
+        <div class="d-grid gap-2 d-md-block">
+          <a
+            style="float: left; width: 49%; text-align: center"
+            routerLink="/houses/detail/{{ houseDetail.houseId }}"
+            class="btn btn-dark"
+            >İncele</a
+          >
+          <button
+            style="float: right; width: 49%; text-align: center"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#rentalModal"
+            (click)="getSelectedHouseForRental(houseDetail)"
+            class="btn btn-warning"
+          >
+            Kirala
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
