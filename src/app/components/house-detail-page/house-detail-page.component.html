@@ -1,4 +1,5 @@
 <div
+  *ngIf="houseImages && houseImages.length > 0"
   id="carouselExampleDark"
   class="carousel carousel-dark slide"
   data-bs-ride="carousel"
@@ -29,7 +30,8 @@
       />
     </div>
   </div>
-  <button
+  
+  <button *ngIf="houseImages.length > 1"
     class="carousel-control-prev"
     type="button"
     data-bs-target="#carouselExampleDark"
@@ -38,7 +40,7 @@
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Geri</span>
   </button>
-  <button
+  <button *ngIf="houseImages.length > 1"
     class="carousel-control-next"
     type="button"
     data-bs-target="#carouselExampleDark"

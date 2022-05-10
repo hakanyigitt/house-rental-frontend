@@ -1,18 +1,23 @@
-<nav class="navbar navbar-expand-lg navbar-light  " style="background-color: #FFBE0B;">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #192a45; box-shadow: 1px 1px rgb(206, 206, 206);">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Ev Kiralama</a>
+    <a class="navbar-brand" routerLink="/">
+      <i class="fas fa-home"></i>
+      <font style="font-family: monospace;"> Ev Kiralama</font>
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link" aria-current="page" routerLink="/houses">Evler</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
+       <!-- <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/upcomingevents">Yaklaşan Etkinlikler</a>
+        </li>-->
+        <!--<li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
           </a>
@@ -22,8 +27,30 @@
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
-        </li>
+        </li> -->
+        <!--<li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li> -->
       </ul>
+      <form *ngIf="ad == null" class="d-flex">
+        <a class="btn btn-outline-info" style="margin-right: 3px;" routerLink="/login">Giriş Yap</a>
+        <a class="btn btn-outline-warning" routerLink="/register">Kayıt Ol</a>
+      </form>
+      <form *ngIf="ad != null" class="d-flex">
+        <!--<i style="color:white; position: relative; top:5px; right: 5px;" class="fa fa-user"></i>
+        <font color="white"><b>{{userFullname}}</b></font> -->
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 140px;">
+            <i class="fas fa-user"></i> {{ad}}
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="min-width: 9rem; margin-top: 0.400rem;">
+            <li><button routerLink="/profile" class="dropdown-item" type="button">Profilim</button></li>
+            <li><button (click)="logout()" class="dropdown-item" type="button">Çıkış</button></li>
+
+          </ul>
+        </div>
+
+      </form>
     </div>
   </div>
 </nav>

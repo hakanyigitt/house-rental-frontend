@@ -3,12 +3,16 @@
  
   <div class="row">
     <div class="col-md-3">
-      <app-category></app-category>
-      <app-city></app-city>
+      <app-category *ngIf="showMenu"></app-category>
+      <app-city *ngIf="showMenu"></app-city>
     </div>
     <div class="col-md-9">
       <router-outlet></router-outlet>
     </div>
   </div>
 </div>
+<br/>
+<br/>
+<br/>
+<br/>
 <app-footer></app-footer>

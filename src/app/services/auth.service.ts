@@ -18,7 +18,7 @@ export class AuthService {
   apiUrl = "https://localhost:44334/api/";
 
   constructor(private httpClient:HttpClient, private storageTokenService:StorageTokenService) { }
-  login(loginModel:LoginModel){
+  login(loginModel:LoginModel):Observable<SingleResponseModel<TokenModel>>{
     let apiLink = environment.apiUrl+"auth/login";
     return this.httpClient.post<SingleResponseModel<TokenModel>>(apiLink,loginModel);
   }

@@ -11,6 +11,7 @@ import { HouseDetailService } from 'src/app/services/house-detail.service';
 export class HouseDetailPageComponent implements OnInit {
   houseDetails: HouseDetail[] = [];
   dataLoaded = false;
+  defaultLink = "Images/DefaultHouse.jpg";
   houseImages:string[];
   imgBaseUrl: string = 'https://localhost:44334/';
   constructor(private houseDetailService:HouseDetailService, private activatedRoute:ActivatedRoute) { }
@@ -26,7 +27,11 @@ export class HouseDetailPageComponent implements OnInit {
   getHouseDetailsByHouseId(houseId:number){
     this.houseDetailService.getHouseDetailsByHouseId(houseId).subscribe(response=>{
       this.houseDetails = response.data;
+
       this.houseImages =  this.houseDetails[0].houseImagePath;
+      if(this.houseImages.length == 0){
+        this.houseImages[0] = this.defaultLink;
+      }
       this.dataLoaded = true;
     })
   }
