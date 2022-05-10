@@ -11,7 +11,6 @@ import { StorageTokenService } from 'src/app/services/storage-token.service';
 export class NaviComponent implements OnInit {
 
   constructor(private loggedUserService:LoggedUserService,private tokenService:StorageTokenService) { }
-  adsoyad:string;
   ad:string;
   showNav:boolean;
   expiremin:number;
@@ -20,9 +19,7 @@ export class NaviComponent implements OnInit {
       this.ad = localStorage.getItem("ad")
     },1000)
   }
-  getName(){
-    localStorage.getItem("ad")
-  }
+
   logout(){
     localStorage.clear();
     this.ad = null;

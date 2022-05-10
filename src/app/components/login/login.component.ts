@@ -34,6 +34,17 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("ad",ad);
     });
   }
+  getUserInfo(){
+    this.loggedUserService.getProfileInfo().subscribe(response=>{
+      console.log(response.message);
+      let firstName = response.data.firstName;
+      let lastName = response.data.lastName;
+      let email = response.data.email;
+      localStorage.setItem("firstName",firstName);
+      localStorage.setItem("lastName",lastName);
+      localStorage.setItem("email",email);
+    })
+  }
   login(){
     if(this.loginForm.valid){
       let loginModel:LoginModel = Object.assign({},this.loginForm.value);
@@ -43,6 +54,7 @@ export class LoginComponent implements OnInit {
           this.toastrService.success("Anasayfaya yönlendiriliyorsunuz");
           localStorage.setItem("token",res.data.token);
           this.getName()
+          this.getUserInfo()
           setTimeout(()=>{
             this.route.navigate(['/']);
           },1000)

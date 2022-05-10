@@ -14,7 +14,7 @@ export class AppComponent {
     this.router.events.subscribe(val=>{
       if(val instanceof NavigationEnd){
         console.log(this.router.url);
-        if(this.router.url == '/login' ||this.router.url == '/register'){
+        if(this.router.url == '/login' ||this.router.url == '/register' || this.router.url == '/profile'){
           this.showMenu = false;
         }else{
           this.showMenu = true;

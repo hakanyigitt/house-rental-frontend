@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<br>
+<div class="container">
+        <div class="d-flex justify-content-center h-100">
+                <div class="card">
+                        <div class="card-header">
+                                <h3>Kullanıcı Bilgileri</h3>
+                                <div class="d-flex justify-content-end social_icon">
+                                        <span><i class="fas fa-home"></i></span>
+                                </div>
+                        </div>
+                        <div class="card-body">
+                                <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        </div>
+                                        <input type="text" formControlName="firstName" class="form-control"
+                                                placeholder="Adınız" value="{{firstName}}" readonly="readonly">
+                                </div>
+                                <br>
+                                <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        </div>
+                                        <input type="text" formControlName="lastName" class="form-control"
+                                                placeholder="Soyadınız" value="{{lastName}}" readonly="readonly">
+                                </div>
+                                <br>
+                                <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        </div>
+                                        <input type="email" formControlName="email" class="form-control"
+                                                value="{{email}}" readonly="readonly" placeholder="E-Mail">
+
+                                </div>
+                                <br>
+                        </div>
+                </div>
+        </div>
+</div>

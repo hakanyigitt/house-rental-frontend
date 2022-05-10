@@ -14,31 +14,12 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" routerLink="/houses">Evler</a>
         </li>
-       <!-- <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="/upcomingevents">Yaklaşan Etkinlikler</a>
-        </li>-->
-        <!--<li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li> -->
-        <!--<li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li> -->
       </ul>
       <form *ngIf="ad == null" class="d-flex">
         <a class="btn btn-outline-info" style="margin-right: 3px;" routerLink="/login">Giriş Yap</a>
         <a class="btn btn-outline-warning" routerLink="/register">Kayıt Ol</a>
       </form>
       <form *ngIf="ad != null" class="d-flex">
-        <!--<i style="color:white; position: relative; top:5px; right: 5px;" class="fa fa-user"></i>
-        <font color="white"><b>{{userFullname}}</b></font> -->
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 140px;">
             <i class="fas fa-user"></i> {{ad}}
