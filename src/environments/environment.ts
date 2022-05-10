@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl:"https://localhost:44334/api/",
+  authApi:"api/auth/",
+  formnotvalidmessage : "Lütfen girdiğiniz verileri kontrol ediniz",
+  formnotvalidtitle : "Form Hatası",
 };
 
 /*

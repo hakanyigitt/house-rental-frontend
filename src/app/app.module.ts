@@ -18,6 +18,10 @@ import { HouseDetailPageComponent } from './components/house-detail-page/house-d
 import { HouseDetailComponent } from './components/house-detail/house-detail.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { HouseFilterPipe } from './pipes/house-filter.pipe';
+import { FooterComponent } from './components/footer/footer.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { HouseFilterPipe } from './pipes/house-filter.pipe';
     HouseDetailPageComponent,
     HouseDetailComponent,
     RentalComponent,
-    HouseFilterPipe
+    HouseFilterPipe,
+    FooterComponent,
+    LoginComponent,
+    RegisterComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
