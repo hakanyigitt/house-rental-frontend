@@ -14,11 +14,13 @@ export class HouseDetailPageComponent implements OnInit {
   defaultLink = "Images/DefaultHouse.jpg";
   houseImages:string[];
   imgBaseUrl: string = 'https://localhost:44334/';
+  houseId:number;
   constructor(private houseDetailService:HouseDetailService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
       if(params["houseId"]){
+        this.houseId = params["houseId"];
         this.getHouseDetailsByHouseId(params["houseId"])
       }
     });
@@ -50,6 +52,10 @@ export class HouseDetailPageComponent implements OnInit {
     } else {
       return '';
     }
+  }
+
+  goToPayment(){
+
   }
 
 }
