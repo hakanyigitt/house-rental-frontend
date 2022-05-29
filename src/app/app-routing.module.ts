@@ -5,8 +5,10 @@ import { HouseDetailPageComponent } from './components/house-detail-page/house-d
 import { HouseDetailComponent } from './components/house-detail/house-detail.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { OrdersComponent } from './components/orders/orders.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { RentalComponent } from './components/rental/rental.component';
 
 const routes: Routes = [
   {path:"", pathMatch:"full", component:HouseDetailComponent},
@@ -18,7 +20,8 @@ const routes: Routes = [
   {path:"register",component:RegisterComponent},
   {path:"user/logout",component:LogoutComponent,canActivate:[LoginGuard]},
   {path:"profile",component:ProfileComponent},
-
+  {path:"rental",component:RentalComponent},
+  {path:"orders",component:OrdersComponent},
 ];
 
 @NgModule({

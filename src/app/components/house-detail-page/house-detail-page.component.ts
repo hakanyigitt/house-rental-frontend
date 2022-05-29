@@ -15,10 +15,12 @@ export class HouseDetailPageComponent implements OnInit {
   houseImages:string[];
   imgBaseUrl: string = 'https://localhost:44334/';
   houseId:number;
+  userId:number = null;
   constructor(private houseDetailService:HouseDetailService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
+      this.userId = Number(localStorage.getItem("userId"));
       if(params["houseId"]){
         this.houseId = params["houseId"];
         this.getHouseDetailsByHouseId(params["houseId"])
@@ -55,7 +57,11 @@ export class HouseDetailPageComponent implements OnInit {
   }
 
   goToPayment(){
-
+    let houseId = this.houseId;
+    localStorage.setItem("houseId",houseId.toString());
+    localStorage.setItem("dailyPrice",this.houseDetails[0].dailyPrice.toString());
+    localStorage.setItem("houseName", this.houseDetails[0].houseName);
+    window.location.href="/rental"
   }
 
 }

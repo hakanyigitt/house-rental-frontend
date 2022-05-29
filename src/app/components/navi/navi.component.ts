@@ -23,6 +23,7 @@ export class NaviComponent implements OnInit {
   logout(){
     localStorage.clear();
     this.ad = null;
+    window.location.href = "/login";
   }
   /*renewToken(){
     this.loggedUserService.renewToken().subscribe(response=>{

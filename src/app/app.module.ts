@@ -16,7 +16,6 @@ import { CategoryFilterPipe } from './pipes/category-filter.pipe';
 import { CityFilterPipe } from './pipes/city-filter.pipe';
 import { HouseDetailPageComponent } from './components/house-detail-page/house-detail-page.component';
 import { HouseDetailComponent } from './components/house-detail/house-detail.component';
-import { RentalComponent } from './components/rental/rental.component';
 import { HouseFilterPipe } from './pipes/house-filter.pipe';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
@@ -24,6 +23,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthInterceptor } from 'src/interceptors/auth.interceptor';
 import { ProfileComponent } from './components/profile/profile.component';
+import { RentalComponent } from './components/rental/rental.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -36,13 +37,14 @@ import { ProfileComponent } from './components/profile/profile.component';
     CityFilterPipe,
     HouseDetailPageComponent,
     HouseDetailComponent,
-    RentalComponent,
     HouseFilterPipe,
     FooterComponent,
     LoginComponent,
     RegisterComponent,
     LogoutComponent,
     ProfileComponent,
+    RentalComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,

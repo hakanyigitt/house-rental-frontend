@@ -1,0 +1,23 @@
+<div style="margin-top: 48px;">
+<h2>Rezervasyonlarım</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Ev Id</th>
+            <th>Kalınacak Gün</th>
+            <th>Toplam Tutar</th>
+            <th>Kiralama Günü</th>
+            <th>Kalınacak Son Gün</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let rental of houseRentals" >
+        <td>{{rental.houseId}}</td>
+        <td>{{rental.dayToStay}}</td>
+        <td>{{rental.totalPrice}} TL</td>
+        <td>{{rental.rentalDate}}</td>
+        <td>{{rental.endDate}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>

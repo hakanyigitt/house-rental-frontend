@@ -1,1 +1,54 @@
-<p>rental works!</p>
+<div class="content" style="margin-top: 48px;">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header"><h5 class="title">Evi Kirala</h5></div>
+            <div class="card-body">
+                <form [formGroup]="rentalAddForm">
+                    <div class="mb-3">
+                        <label for="houseName">Ev Adı</label>
+                        <div class="form-group">
+                            <input type="text" [readonly]="true" value="{{houseName}}" formControlName="houseName" class="form-control" placeholder="Evin Adı"/>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rentDate">Kiralanacak Tarih</label>
+                        <div class="form-group">
+                            <input type="date" id="rentDate" formControlName="rentalDate" class="form-control" placeholder="Kiralama Tarihi" value="{{rentalDateStr}}"/>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="returnDate">Kalınacak Son Gün Tarihi</label>
+                        <div class="form-group">
+                            <input type="date" id="returnDate" formControlName="returnDate" class="form-control" placeholder="Son Tarih" value="{{returnDateStr}}"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-8">                    <div class="mb-3">
+                        <label for="returnDate">Kart No</label>
+                        <div class="form-group">
+                            <input type="text" maxlength="16" size="16" placeholder="**** **** **** ****" id="cardNo" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="returnDate">CVV</label>
+                        <div class="form-group">
+                            <input type="text" maxlength="3" size="3" id="cvv" class="form-control" placeholder="CVV"/>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="returnDate">Son kullanım tarihi</label>
+                        <div class="form-group">
+                            <input type="text" id="sonKullanim" class="form-control" placeholder="mm/yyyy"/>
+                        </div>
+                    </div></div></div>
+
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-fill btn-primary" (click)="add()" >Kirala <span class="badge bg-secondary">₺{{totalPrice}}</span></button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

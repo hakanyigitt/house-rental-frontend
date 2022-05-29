@@ -28,7 +28,7 @@ export class HouseDetailComponent implements OnInit {
   selectedHouseForRental: HouseDetail;
   rentalDate: string;
   returnDate: string;
-
+  ad:string = null;
   validateRentalDates: boolean = false;
   rentalPeriod:number;
   rentalConfirmation: SingleResponseModel<boolean>;
@@ -58,6 +58,9 @@ export class HouseDetailComponent implements OnInit {
         this.getCities()
       }
     })
+    setInterval(()=>{
+      this.ad = localStorage.getItem("ad")
+    },1000)
   }
 
   filter(){
@@ -141,7 +144,11 @@ export class HouseDetailComponent implements OnInit {
   }
 
   getSelectedHouseForRentalImageSrc(){
-    return this.imgBaseUrl + this.selectedHouseForRental.houseImagePath[0];
+    if(this.selectedHouseForRental.houseImagePath[0]){
+      return this.imgBaseUrl + this.selectedHouseForRental.houseImagePath[0];
+    }else{
+      return "https://localhost:44334/Images/DefaultHouse.jpg";
+    }
   }
 
   getDateNow(){
@@ -193,6 +200,22 @@ export class HouseDetailComponent implements OnInit {
 
   goToPayment(){
     console.log("ödeme sistemine git")
+    console.log(this.rentalDate);
+    console.log(this.returnDate);
+    localStorage.setItem("rentalDate",this.rentalDate);
+    localStorage.setItem("returnDate",this.returnDate);
+    let houseId = this.selectedHouseForRental.houseId 
+    localStorage.setItem("houseId",houseId.toString());
+    localStorage.setItem("dayToStay",this.rentalPeriod.toString())
+    let totalPrice = this.selectedHouseForRental.dailyPrice * this.rentalPeriod;
+    localStorage.setItem("totalPrice",totalPrice.toString());
+    localStorage.setItem("houseName", this.selectedHouseForRental.houseName);
+    window.location.href="/rental"
   }
-
+  gotoRegisterPage(){
+    window.location.href="/";
+  }
+  gotoLoginPage(){
+    window.location.href="/login";
+  }
 }

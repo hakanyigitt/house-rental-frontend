@@ -40,9 +40,11 @@ export class LoginComponent implements OnInit {
       let firstName = response.data.firstName;
       let lastName = response.data.lastName;
       let email = response.data.email;
+      let userId = response.data.id;
       localStorage.setItem("firstName",firstName);
       localStorage.setItem("lastName",lastName);
       localStorage.setItem("email",email);
+      localStorage.setItem("userId",userId.toString());
     })
   }
   login(){

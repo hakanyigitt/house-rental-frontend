@@ -1,3 +1,4 @@
+
 <div
   *ngIf="houseImages && houseImages.length > 0"
   id="carouselExampleDark"
@@ -87,6 +88,6 @@
   </div>
   <div class="modal-footer">
     <div>
-      <button type="button" class="btn btn-warning">Kirala</button>
+      <button type="button" *ngIf="userId" class="btn btn-warning" (click)="goToPayment()">Kirala</button>
     </div>
   </div>

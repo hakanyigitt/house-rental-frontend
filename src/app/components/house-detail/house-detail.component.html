@@ -101,7 +101,8 @@
 
       <div class="modal-footer">
         <div *ngIf="rentalConfirmation && validateRentalDates===true">
-          <button *ngIf="rentalConfirmation.data===true" type="button" class="btn btn-warning">Kirala</button>
+          <button *ngIf="rentalConfirmation.data===true && ad != null" type="button" class="btn btn-warning" (click)="goToPayment()">Kirala</button>
+          <button *ngIf="ad == null" type="button" class="btn btn-warning" (click)="gotoLoginPage()">Giriş Yap</button>
         </div>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           İptal
@@ -204,7 +205,7 @@
             <b style="float: left; width: 50%; text-align: left">Adres</b>
             {{ houseDetail.address }}
           </li>
-          <h5 align="center">{{ houseDetail.dailyPrice }} ₺</h5>
+          <h5 align="center">{{ houseDetail.dailyPrice }} ₺ / Günlük</h5>
         </ul>
 
         <div class="d-grid gap-2 d-md-block">
